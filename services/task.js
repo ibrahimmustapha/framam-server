@@ -24,7 +24,7 @@ const storage = getStorage();
 
 // get user based on uid
 exports.addNewTask = async (req, res) => {
-  const { startDate, title, description, status, dueDate } = req.body;
+  const { startDate, title, description, status, dueDate,createdBy } = req.body;
   try {
     const taskRef = collection(db, "tasks");
     const newTaskRef = doc(taskRef);
@@ -49,7 +49,8 @@ exports.addNewTask = async (req, res) => {
       },
       createdAt: new Date(),
       startDate: startDate,
-      dueDate: dueDate
+      dueDate: dueDate,
+      createdBy: createdBy
     });
 
     res.status(200).json("Task added successfully...");
